@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.1.0
+## v1.0.1
 
 ### Fixed
 - **`SpawnDelay` is no longer doubled in single player.** The spawn coroutine
