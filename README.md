@@ -4,6 +4,8 @@ A Quest C mod for **Attack on Quest (AoQ) 0.5.0** that lets you control the maxi
 
 Built on the [AoQ-ModLoader-For-Quest](https://github.com/Treyo1928/AoQ-Modloader) framework.
 
+**v1.1.0:** `SpawnDelay` now means what it says — v1 silently doubled it in single player (the spawn coroutine waits twice per titan and both waits were patched to the full value). If you tuned around the old behaviour, double your configured value to keep the same pacing.
+
 ---
 
 ## Config
@@ -13,13 +15,13 @@ All values are editable in-game via **Mods → Configure Mods → Titan Spawn Co
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `MaxTitans` | int | `5` | Maximum number of titans alive at once |
-| `SpawnDelay` | float | `5.0` | Seconds between titan spawns |
+| `SpawnDelay` | float | `5.0` | Total seconds between titan spawns |
 
 Both settings apply to single player and multiplayer. In multiplayer you must be the host.
 
 Config is stored at:
 ```
-/sdcard/Android/data/com.AoQ.AttackOnQuest/files/modconfigs/titanspawn.json
+/sdcard/DCIM/AoQMods/modconfigs/titanspawn.json
 ```
 
 ---
@@ -39,7 +41,7 @@ Config is stored at:
 1. Download `libtitanspawn.so` from the [Releases](../../releases) page.
 2. Push it to your headset:
 ```bash
-adb push libtitanspawn.so /sdcard/Android/data/com.AoQ.AttackOnQuest/files/mods/
+adb push libtitanspawn.so /sdcard/DCIM/AoQMods/mods/
 ```
 3. Restart the game. The mod will appear in the **Mods** panel in the main menu.
 
@@ -47,7 +49,9 @@ adb push libtitanspawn.so /sdcard/Android/data/com.AoQ.AttackOnQuest/files/mods/
 
 ## Build from Source
 
-**Prerequisites:** Android NDK r26d
+**Prerequisites:**
+- Any recent Android NDK (auto-detected from `$NDK_BUILD`, `ndk-build` on PATH, or `/opt/android-ndk`)
+- The [AoQ-Modloader](https://github.com/Treyo1928/AoQ-Modloader) repo cloned **next to this one** as `AoQ-ModLoader-For-Quest` (shared code + the `aoqcore` utility library live there)
 
 ```bash
 git clone <this-repo>
